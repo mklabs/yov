@@ -1,10 +1,10 @@
 {
-  "scripts": {
-    "test": "bake test",
-    "browser": "opn http://localhost:3000; list test/",
-    "test-chrome": "opn http://localhost:3000 -- google-chrome; npm run browser",
-    "test-firefox": "opn http://localhost:3000 -- firefox; npm run browser",
-    "start": "bake"
+  "name": "yo-view",
+  "main": "lib/",
+  "dependencies": {
+    "delegate": "^3.0.1",
+    "on-load": "^2.0.0",
+    "yo-yo": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -26,20 +26,16 @@
     "standard-version": "^2.2.1",
     "watchd": "github:mklabs/watchd"
   },
-  "name": "yo-view",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bundle.js",
-  "keywords": [],
-  "author": "",
   "browserify": {
     "transform": [
       "babelify"
     ]
   },
-  "dependencies": {
-    "delegate": "^3.0.1",
-    "on-load": "^2.0.0",
-    "yo-yo": "^1.2.0"
+  "scripts": {
+    "test": "bake test",
+    "browser": "opn http://localhost:3000; list test/",
+    "test-chrome": "opn http://localhost:3000 -- google-chrome; npm run browser",
+    "test-firefox": "opn http://localhost:3000 -- firefox; npm run browser",
+    "start": "bake"
   }
 }

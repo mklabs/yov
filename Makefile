@@ -5,7 +5,7 @@ eslint:
 	DEBUG="eslint:cli*" eslint .
 
 budo:
-	budo bundle.js -l -p 3000 --wg *.js
+	budo docs/bundle.js -l -p 3000 --wg 'lib/* docs/*'
 
 open:
-	opn http://localhost:3000 -- google-chrome-stable
+	opn http://localhost:3000/test/ -- google-chrome-stable
