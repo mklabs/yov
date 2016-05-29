@@ -17,4 +17,4 @@ list:
 
 watch:
 	watchify docs/bundle.js -p [livereactload] -o bundle.js &
-	bake budo
+	bake list

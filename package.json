@@ -35,12 +35,6 @@
     "watchd": "github:mklabs/watchd",
     "watchify": "^3.7.0"
   },
-  "browserify": {
-    "transform": [
-      "babelify",
-      "browserify-css"
-    ]
-  },
   "name": "yo-view",
   "main": "lib/view",
   "dependencies": {
@@ -50,5 +44,14 @@
     "on-load": "^2.0.0",
     "sanitize-html": "^1.11.4",
     "yo-yo": "^1.2.0"
+  },
+  "browserify-css": {
+    "autoInject": false
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "browserify-css"
+    ]
   }
 }
