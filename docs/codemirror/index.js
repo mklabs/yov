@@ -1,10 +1,10 @@
-const View = require('..');
+const View = require('../..');
 
 const cm = require('codemirror');
-const cmcss = require('../codemirror.css');
+const cmcss = require('./codemirror.css');
 
-require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
+require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/markdown/markdown');
 
 export default class CodeMirrorView extends View {

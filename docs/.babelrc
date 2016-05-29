@@ -1,0 +1,27 @@
+{
+  "presets": [
+    "es2015"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "react-transform",
+          {
+            "transforms": [
+              {
+                "transform": "livereactload/babel-transform",
+                "imports": [
+                  "react"
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "plugins": [
+    "add-module-exports"
+  ]
+}
