@@ -1,4 +1,4 @@
-const View = require('.');
+const View = require('..');
 
 const CodeMirrorView = require('./codemirror');
 
