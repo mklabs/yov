@@ -1,4 +1,4 @@
-const View = require('../..');
+const View = require('..');
 
 const cm = require('codemirror');
 const cmcss = require('./codemirror.css');

@@ -16,5 +16,5 @@ list:
 	list .
 
 watch:
-	watchify docs/bundle.js -p [livereactload] -o bundle.js &
+	watchify docs/app.js -p [livereactload] -o bundle.js &
 	bake list

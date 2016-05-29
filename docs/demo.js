@@ -1,4 +1,4 @@
-const View = require('..');
+const View = require('.');
 
 export default class Demo extends View {
   get name () {
