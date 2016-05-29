@@ -54,7 +54,7 @@ export default class Layout extends View {
           </div>
 
           <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800">
-            <p class="mdl-typography--display-2-color-contrast" style="padding: 20px;">
+            <p class="mdl-typography--display-1-color-contrast" style="padding: 20px;">
               Or open up your console and play with <code>form</code> and <code>layout</code> variables. These are the view instance we see above.
 
               <pre class="mdl-color--grey-200 mdl-color-text--accent" style="padding-left: 15px;"><code>

@@ -1,9 +1,7 @@
 {
+  "name": "yov",
+  "main": "lib/view",
   "scripts": {
-    "test": "bake test",
-    "browser": "opn http://localhost:3000; list test/",
-    "test-chrome": "opn http://localhost:3000 -- google-chrome; npm run browser",
-    "test-firefox": "opn http://localhost:3000 -- firefox; npm run browser",
     "start": "bake"
   },
   "devDependencies": {
@@ -35,8 +33,6 @@
     "watchd": "github:mklabs/watchd",
     "watchify": "^3.7.0"
   },
-  "name": "yo-view",
-  "main": "lib/view",
   "dependencies": {
     "csjs": "^1.0.3",
     "delegate": "^3.0.1",
