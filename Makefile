@@ -1,11 +1,20 @@
 
-all: eslint budo open
+all: serve
 
 eslint:
 	DEBUG="eslint:cli*" eslint .
 
+serve: watch
+
 budo:
-	budo docs/bundle.js -l -p 3000 --wg 'lib/* docs/*'
+	budo -l -p 3000
 
 open:
-	opn http://localhost:3000/test/ -- google-chrome-stable
+	opn http://localhost:3000/docs/ -- google-chrome-stable
+
+list:
+	list .
+
+watch:
+	watchify docs/bundle.js -p [livereactload] -o bundle.js &
+	bake budo
