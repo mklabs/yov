@@ -20,12 +20,14 @@ function init () {
   let pathname = location.pathname;
   log('Init pages >> %s', pathname, app);
 
+	// clean up baseURL before routing
+	pathname = pathname.replace(/^\/yov\//, '');
+
   let match = Object.keys(routes).find((name) => {
     let regex = routes[name];
     if (typeof regex === 'string') return regex === pathname;
     return regex.test(pathname.slice(1));
   });
-
 
   if (!match) return debug('Not Found!');
   if (match === 'index') return index();
