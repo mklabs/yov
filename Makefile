@@ -16,5 +16,5 @@ watch:
 	watchify docs/app.js -p [livereactload] -o docs/bundle.js &
 	bake list
 
-bro:
-	browserify docs/app.js -o docs/bundle.js
+ghpages:
+	git subtree push --prefix docs origin gh-pages
