@@ -10,7 +10,7 @@ open:
 	opn http://localhost:3000/docs/ -- google-chrome-stable
 
 list:
-	list .
+	list docs/
 
 watch:
 	watchify docs/app.js -p [livereactload] -o docs/bundle.js &

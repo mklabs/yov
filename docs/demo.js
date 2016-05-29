@@ -34,10 +34,6 @@ export default class Demo extends View {
       <div class="mdl-cell mdl-cell--8-col">
         <p>You have ${unread} / ${total} unread messages.</p>
       </div>
-      <div class="mdl-cell mdl-cell--4-col">
-        ${this.badge(unread, 'unread')}
-        ${this.badge(total, 'total')}
-      </div>
     </div>`;
   }
 

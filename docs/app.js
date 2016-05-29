@@ -1,13 +1,56 @@
-const debug = require('debug');
-debug.enable('yoview:*');
-
 const Layout = require('./layout');
-const Form = require('./form');
+const Form   = require('./form');
+const debug  = require('debug');
+const log    = debug('yov');
+const marked = require('marked');
 
-let app = document.querySelector('.js-main');
+const Shell = require('./shell');
+
+debug.enable('yov*');
+
+let routes = {};
+routes.index = '/';
+routes.example = /^examples\//;
+
+// todo: abstract in an App controller / router
+init();
 
 function init () {
-  app.innerHTML = '';
+  let app = window.app = document.querySelector('.js-main');
+  let pathname = location.pathname;
+  log('Init pages >> %s', pathname, app);
+
+  let match = Object.keys(routes).find((name) => {
+    let regex = routes[name];
+    if (typeof regex === 'string') return regex === pathname;
+    return regex.test(pathname.slice(1));
+  });
+
+
+  if (!match) return debug('Not Found!');
+  if (match === 'index') return index();
+  else if (match === 'example') return example();
+}
+
+function index () {
+  let app = document.querySelector('.js-main');
+  let layout = window.layout = new Shell({ name: 'layout' });
+  layout.appendTo(app);
+
+  return fetch('./index.md')
+    .then((res) => res.text())
+    .then((markdown) => marked(markdown))
+    .then((html) => {
+      layout.set({
+        title: 'YoV',
+        body: html,
+        subheading: layout.createElement('span', {}, ['#readme'])
+      });
+    });
+}
+
+function example () {
+  let app = document.querySelector('.js-main');
 
   let layout = window.layout = new Layout({
     name: 'layout',
@@ -33,7 +76,6 @@ function textarea (layout) {
   let form = window.form = new Form();
   layout.set('content', form.el);
   form.set('json', form.data);
-
   form.on('change:editor', update.bind(null, layout, form));
 }
 
@@ -52,13 +94,11 @@ function update (view, form, json) {
   view.demo.set(data);
 }
 
-init();
-
 if (module.onReload) {
   module.onReload(() => {
     console.clear();
-    app.innerHTML = '';
+    window.app.innerHTML = '';
     init();
-    return true;
+    return false;
   });
 }

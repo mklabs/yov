@@ -6,6 +6,10 @@ export default class Layout extends View {
 
   get style () {
     return `
+		.mdl-layout-title a {
+			text-decoration: none;
+		}
+
     .mdl-layout .mdl-layout__header-row {
       padding-left: 20px;
     }`;
@@ -31,7 +35,9 @@ export default class Layout extends View {
     <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">YoV - Tiny ViewModel component for yo-yo</span>
+          <span class="mdl-layout-title">
+						<a href="../" class="mdl-color-text--grey-400">YoV</a>
+					 - Tiny ViewModel component for yo-yo</span>
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
