@@ -1,20 +1,33 @@
 
 all: serve
 
+env:
+	env
+
 eslint:
-	DEBUG="eslint:cli*" eslint .
+	eslint .
+
+fix:
+	eslint . --fix
 
 serve: watch
 
 open:
-	opn http://localhost:3000/docs/ -- google-chrome-stable
+	opn http://localhost:3000/yov/ -- google-chrome-stable
 
 list:
-	list docs/
+	list yov/
 
-watch:
-	watchify docs/app.js -p [livereactload] -o docs/bundle.js &
+dev:
+	watchify yov/app.js -p [livereactload] -o yov/bundle.js &
 	bake list
 
-ghpages:
-	git subtree push --prefix docs origin gh-pages
+watch:
+	watchify yov/app.js -p [livereactload] -o yov/bundle.js
+
+build:
+	browserify -e yov/app.js -o yov/bundle.js --standalone Yov
+
+push: build
+	git subtree push --prefix yov origin gh-pages
+	git push origin master

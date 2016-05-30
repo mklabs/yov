@@ -31,6 +31,7 @@
     "react": "^15.1.0",
     "react-proxy": "^1.1.8",
     "standard-version": "^2.2.1",
+    "uglify-js": "^2.6.2",
     "watchd": "github:mklabs/watchd",
     "watchify": "^3.7.0"
   },
