@@ -31,8 +31,13 @@ build-app:
 build-lib:
 	browserify -e lib/view.js -o yov/yov-0.0.1.js --standalone Yov
 
-build: build-app build-lib
+build: build-app build-lib commit
 
-push: build
+commit:
+	git commit -am 'build update'
+
+deploy: build push
 	git subtree push --prefix yov origin gh-pages
+
+push:
 	git push origin master
