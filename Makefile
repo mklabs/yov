@@ -34,7 +34,7 @@ build-lib:
 build: build-app build-lib commit
 
 commit:
-	git commit -am 'build update'
+	git add yov/; git commit -m 'build update'
 
 deploy: build push
 	git subtree push --prefix yov origin gh-pages
