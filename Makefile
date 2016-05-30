@@ -1,8 +1,8 @@
 
-all: serve
+all: help
 
-env:
-	env
+help:
+	bake -h
 
 eslint:
 	eslint .
@@ -25,8 +25,13 @@ dev:
 watch:
 	watchify yov/app.js -p [livereactload] -o yov/bundle.js
 
-build:
-	browserify -e yov/app.js -o yov/bundle.js --standalone Yov
+build-app:
+	browserify -e yov/app.js -r ./lib/view.js:yov > yov/bundle.js
+
+build-lib:
+	browserify -e lib/view.js -o yov/yov-0.0.1.js --standalone Yov
+
+build: build-app build-lib
 
 push: build
 	git subtree push --prefix yov origin gh-pages
