@@ -19,7 +19,7 @@ function init () {
   log('Init pages >> %s', pathname, app);
 
 	// clean up baseURL before routing
-  pathname = pathname.replace(/^\/yov\//, '');
+  pathname = pathname.replace(/^\/yov\//, '/');
 
   let match = Object.keys(routes).find((name) => {
     let regex = routes[name];
