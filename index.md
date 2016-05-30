@@ -1,33 +1,71 @@
 # YoV
 
-Run local dev server
+Reactive ViewModel component powered by
+[yo-yo](https://github.com/maxogden/yo-yo), [bel](https://github.com/shama/bel)
+and [csjs](https://github.com/rtsao/csjs#readme)
 
-    git clone https://github.com/mklabs/yov.git && cd yov
-    npm install
-    npm start
+```html
+<script defer src="https://cdn.rawgit.com/mklabs/yov/gh-pages/yov-0.0.1.js"></script>
+```
 
-It will run the following commands:
+`Yov` is a bit like an hybrid between `Backbone.View` and `React.Component`,
+but using [ES6 tagged template
+litterals](https://github.com/maxogden/yo-yo#tagged-template-literals) instead
+of JSX.
 
-    watchify docs/app.js -p [livereactload] -o docs/bundle.js &
-    list .
+- Simple and flexible ES6 tagged template engine with [bel](https://github.com/shama/bel)
+- Events binding using [delegate](https://github.com/zenorocha/delegate)
+- CSS style inline injection using [insert-css](https://github.com/substack/insert-css)
+- Modular, scoped styles with powered by [csjs](https://github.com/rtsao/csjs#features)
+- Real-time [udpates](https://github.com/maxogden/yo-yo#dynamic-updates) on model changes
+- Attach / detach event handlers triggered when an element has been inserted or
+  removed from the DOM, thanks to [on-load](https://github.com/shama/on-load)
+- Views are EventEmitters (`.on()` / `.emit()`)
+- Easy view compositions
 
-- [watchify](https://github.com/substack/watchify)
-- [micro-list](https://github.com/zeit/micro-list#readme)
-- [livereactload](https://github.com/milankinen/livereactload)
+```js
+var view = new Yov({
+  name: 'Layout',
 
-`watchify` will compile docs/app.js entry point to docs/bundle.js and
-incrementally update the bundle on file changes. `livereactload` plugin
-implements hot reloading for browserify.
+  templates() {
+    return this.hx`
+		<main>
+			<h1>${title}</h2>
+			Hello ${name}
+		</main>`;
+  },
 
-Open `http://localhost:3000/docs/` to load the demo application.
+  defaults: {
+    title: 'Yov!',
+    name: 'John Doe'
+  }
+});
+
+view.set('name', 'Jane Doe');
+
+view.set({
+  title: 'Woot!'
+});
+
+view.on('attached', function() {
+  console.log('Added to the DOM');
+});
+
+view.appendTo(document.body);
+```
 
 ---
 
-[Demo](./examples/)
+[CodeMirror Demo](./examples/)
 
 ---
 
-### View
+### Yov Views
+
+YoV is intended to be inherited from to provide your own View class. Using ES6,
+you can take advantages of tagges templates, getters, parameters destructuring, etc.
+
+Here is a basic example to define a "Shell" layout to hold your application views.
 
 ```js
 const View = require('yov');
@@ -40,8 +78,7 @@ class Shell extends View {
 		return `
 		.app {
 			padding: 50px;
-		}
-		`;
+		}`;
 	}
 
 	// Define a template method using ES6 tagged template string with this.hx
@@ -65,7 +102,17 @@ layout.appendTo(document.body);
 layout.set('title', 'Yov!')
 ```
 
-Once added to the DOM, the view will update when `.set()` is called with model
-information. It'll add or merge properties to `this.props` and passed through
-templates and views..
+The view will update itself when `.set()` is called with model information.
+It'll add or merge properties to `this.props` which passed through templates and
+views.
+
+`this.styles` is used to inline CSS in the document `<head>` when the element
+is added to the DOM.
+
+...
+
+---
+
+[Work in progress](https://github.com/mklabs/yov/issues/1)
+
 
