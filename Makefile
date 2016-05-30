@@ -36,8 +36,10 @@ build: build-app build-lib commit
 commit:
 	git add yov/; git commit -m 'build update'
 
-deploy: build push
+ghpages:
 	git subtree push --prefix yov origin gh-pages
+
+deploy: ghpages push
 
 push:
 	git push origin master
